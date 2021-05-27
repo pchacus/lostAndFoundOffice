@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <table class="table table-responsive table-borderless text-center">
+        <tr><th colspan="2"><h3>Edytuj konto użytkownika</h3></th></tr>
+        {{ form_start(form)}}
+        <tr><td>Imię:</td><td> {{ form_row(form.firstName) }}</td></tr>
+        <tr><td>Nazwisko:</td><td>{{ form_row(form.lastName) }}</td></tr>
+        <tr><td>Email</td><td>{{ form_row(form.email) }}</td></tr>
+        <tr><td colspan="2"> {{ form_widget(form.Zapisz) }}</td></tr>
+        {{ form_end(form) }}
+    </table>
+{% endblock %}

@@ -1,0 +1,67 @@
+index:
+  path: /
+  controller: App\Controller\PostController::allPosts
+
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+app_logout:
+  path: /logout
+  methods: GET
+
+password_reset:
+  path: /password/reset
+  controller: App\Controller\UserController::resetPassword
+
+search:
+  path: /search
+  controller: App\Controller\PostController::search
+
+post_add:
+  path: /user/post/add
+  controller: App\Controller\PostController::addPost
+
+post_all:
+    path: /posts
+    controller: App\Controller\PostController::allPosts
+
+post_edit:
+  path: /user/post/edit/{postId}
+  controller: App\Controller\PostController::editPost
+
+post_deactivate:
+  path: /user/post/deactivate/{postId}
+  controller: App\Controller\PostController::deactivatePost
+
+user_posts:
+  path: /user/posts/my
+  controller: App\Controller\PostController::userPosts
+
+user_change_password:
+  path: /user/password/change
+  controller: App\Controller\UserController::changePassword
+
+admin_list_of_users:
+  path: /admin/users
+  controller: App\Controller\AdminController::listOfUsers
+
+admin_user_edit:
+  path: /admin/user/edit/{userId}
+  controller: App\Controller\AdminController::editAccount
+
+admin_user_delete:
+  path: /admin/user/delete/{userId}
+  controller: App\Controller\AdminController::deleteAccount
+
+admin_promo_to_admin:
+  path: /admin/user/promoToAdmin/{userId}
+  controller: App\Controller\AdminController::promoToAdmin
+
+admin_list_of_posts:
+  path: /admin/posts
+  controller: App\Controller\AdminController::listOfPosts

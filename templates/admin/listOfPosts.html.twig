@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <table class="table table-responsive table-striped text-center">
+
+        <tr><th>ID:</th><th>Tytuł:</th><th>Opis:</th><th>Miejsce znalezienia:</th><th>Miejsce odbioru:</th><th>Dodane przez:<th>Data utworzenia</th><th>Aktywny:</th><th colspan="2">Operacje</th></tr>
+        {% for post in posts %}
+        <tr><td>{{ post.id }}</td><td>{{ post.title }}</td><td>{{ post.description }}</td><td>{{ post.place_of_found }}</td><td>{{ post.place_of_pick }}</td><td>{{ post.username }}</td>
+            <td>{{ post.create_date }}</td>
+            {% if post.status == 1 %}
+                <td>
+                    Tak
+                </td>
+                <td>
+                    <a class="btn text-success" href="{{ path('post_edit', {postId:post.id} ) }}">Edytuj</a>
+                </td>
+                <td> <a class="btn text-danger" href="{{ path('post_deactivate', {postId:post.id}) }}">Zakończ</a></td>
+            {% else %}
+                <td>
+                    Nie
+                </td>
+                <td colspan="2" class="text-info">
+                    Nie można edytować
+                </td>
+            {% endif %}
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

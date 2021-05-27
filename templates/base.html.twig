@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>Znalezione UP Kraków</title>
+    <link rel="shortcut icon" href="{{ asset('/static/img/favicon.ico') }}" />
+
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('static/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('static/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+<div id="wrapper">
+
+
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#CDCDCD;">
+
+
+        <a class="d-flex align-items-center justify-content-center" href="{{ asset('/') }}">
+
+            <img src="{{ asset('static/img/logo.png') }}" alt="logo" class="img-fluid">
+        </a>
+
+        {% if app.user %}
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ asset('/') }}"><span>Aktualne Posty</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ asset('/user/post/add') }}"><span>Dodaj Ogłoszenie</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ asset('/user/posts/my') }}"><span>Twoje Posty</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ asset('/user/password/change') }}"><span>Zmiana hasła</span></a>
+            </li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+
+            <hr class="sidebar-divider d-none d-md-block">
+            <!-- Heading -->
+            <div class="sidebar-heading text-white" >
+                Admin
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ asset('/admin/users') }}"><span> Lista użytkowników</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ asset('/admin/posts') }}"><span>Lista postów</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle  border-0" id="sidebarToggle"></button>
+            </div>
+            {% endif %}
+
+        {% endif %}
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 sticky-top shadow" style="background-color:#CDCDCD;">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-secondary d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+
+                        <a class="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw " style="color:white;"></i>
+                        </a>
+
+
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search" method="get" action="{{ path('search') }}">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" name="_keywords"
+                                           placeholder="Wyszukaj..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-secondary" role="button" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item">
+                    <!-- Topbar Search -->
+                        <form class="d-none d-sm-inline-block form-inline mr-3 ml-md-auto my-2 my-md-3 mw-100"
+                              method="get" action="{{ path('search') }}">
+                            <div class="searchbar bg-secondary">
+                                <input class="search_input"  name="_keywords" type="text" placeholder="Wyszukaj..." aria-label="search">
+                                <button class="btn search_icon" role="button" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                    </li>
+
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <div class="text-secondary text-center nav-link"> Jesteś zalogowany jako: {{ app.user.username }},
+                                <a href="{{ path('app_logout') }}" class="text-white ml-2"> Wyloguj!</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="{{ path('register') }}">Zarejestruj</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="{{ path('login') }}">Zaloguj</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+            </nav>
+
+            <div class="container-fluid">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="{{ asset('static/vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('static/js/sb-admin-2.min.js') }}"></script>
+        <script src="{{ asset('static/vendor/bootstrap/js/bootstrap.js') }}"></script>
+</body>
+
+</html>

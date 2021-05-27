@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table table-responsive text-center">
+        <tr> <th>ID:</th><th>Imie, Naziwsko:</th><th>Emial:</th><th>Role:</th><th>Edytuj</th><th>Promuj do Admina</th><th>Usuń</th></tr>
+    {% for user in users %}
+     <tr>
+         <td>{{ user.id }}</td>
+         <td>{{ user.username}}</td>
+         <td>{{ user.email }}</td>
+        <td>
+            {% for role in user.roles %}
+                {{ role }}
+            {% endfor %}
+        </td>
+         <td>
+             <a class="btn btn-primary" href='{{ path('admin_user_edit',{userId:user.id}) }}'>Edytuj</a>
+         </td>
+         <td>
+             {% if user.roles| length == 1 %}
+             <a class="btn btn-warning" href='{{ path('admin_promo_to_admin',{userId:user.id}) }}'>Promuj</a>
+             {% endif %}
+         </td>
+         <td>
+             <a class="btn btn-danger" href='{{ path('admin_user_delete',{userId:user.id})}}'>Usuń</a>
+         </td>
+     </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+        <table class="table table-responsive text-center table-borderless">
+
+
+            <tr><td colspan="2"><h2 class="h3 mb-3 font-weight-normal">Zaloguj się do serwisu!</h2></td></tr>
+            <tr>
+                 <td class="input-container">
+                     <i class="fa fa-envelope icon"></i>
+                    <input type="text" value="{{ last_username }}" name="_username" id="inputUsername" aria-label="email" class="form-control input-field" placeholder="Email" required autofocus>
+                 </td>
+            </tr>
+            <tr>
+
+                <td class="input-container">
+                    <i class="fa fa-lock icon"></i>
+                    <input type="password" name="_password" id="inputPassword" class="form-control input-field" aria-label="password"  placeholder="Hasło" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button class="btn btn-lg btn-success" type="submit"> Zaloguj się! </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <a class="text-info" href="{{ asset('/register') }}"> Nie masz konta? Załóż je!</a>
+                </td>
+            </tr>
+            <tr><td><a href="{{ asset('/password/reset') }}" class="btn text-info">Zapomiałeś hasła? </a></td></tr>
+        </table>
+        </form>
+
+{% endblock %}

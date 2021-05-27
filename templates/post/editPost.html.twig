@@ -1,0 +1,19 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>Edytuj ogłoszenie!</h2>
+
+    <table class="table-responsive text-center table-borderless">
+        {{ form_start(form) }}
+        <tr><td>Tytuł:</td><td>{{ form_row(form.title) }}</td></tr>
+        <tr><td>Opis przedmiotu:</td><td>{{ form_row(form.description) }}</td></tr>
+        <tr><td>Miejsce znalezienia:</td><td>{{ form_row(form.placeOfFound)}}</td></tr>
+        <tr><td>Miejsce pozostawienia do odbioru:</td><td>   {{ form_row(form.placeOfPick) }}</td></tr>
+        <tr><td colspan="2">    {{ form_widget(form.Zapisz) }}
+                {{ form_widget(form.Reset) }}
+            </td></tr>
+        {{ form_end(form) }}
+    </table>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h2 class="font-weight-normal">Zarejestruj się do serwisu!</h2>
+    <table class="table  table-responsive text-center table-borderless">
+
+        {{ form_start(form) }}
+        <tr><td>Imie:</td><td> {{ form_row(form.firstName) }}</td></tr>
+        <tr><td>Nazwisko:</td><td>{{ form_row(form.lastName)}}</td></tr>
+        <tr><td>Email:</td><td> {{ form_row(form.email) }} </td></tr>
+        <tr><td>Hasło:</td><td>  {{ form_row(form.plainPassword) }}</td></tr>
+
+        <tr>
+            <td colspan="2">
+                <button class="btn btn-success" type="submit">Załóż konto!</button>
+            </td>
+        </tr>
+        {{ form_end(form) }}
+    </table>
+{% endblock %}
